@@ -1,0 +1,19 @@
+{
+  "name": "cordova-plugin-checkout",
+  "version": "0.0.1",
+  "description": "Checkout.com cordova plugin",
+  "cordova": {
+    "id": "cordova-plugin-checkout",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android",
+    "cordova-ios"
+  ],
+  "author": "Abdelrahman Iaaly",
+  "license": "MIT"
+}

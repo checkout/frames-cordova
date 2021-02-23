@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="cordova-plugin-checkout" version="0.0.1"
+    xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>Checkout</name>
+    <js-module name="Checkout" src="www/Checkout.js">
+        <clobbers target="cordova.plugins.Checkout" />
+    </js-module>
+    <platform name="android">
+        <config-file parent="/*" target="res/xml/config.xml">
+            <feature name="Checkout">
+                <param name="android-package" value="com.checkout.plugin.Checkout" />
+            </feature>
+        </config-file>
+        <config-file parent="/*" target="AndroidManifest.xml" />
+        <source-file src="src/android/Checkout.java" target-dir="src/com/checkout/plugin/Checkout" />
+        <framework src="src/android/checkout-dependencies.gradle" custom="true" type="gradleReference" />
+    </platform>
+    <platform name="ios">
+        <podspec>
+        <config>
+            <source url="https://cdn.cocoapods.org"/>
+        </config>
+        <pods use-frameworks="true">
+            <pod name="Frames" spec="~> 3.0" />
+        </pods>
+        </podspec>
+        <config-file parent="/*" target="config.xml">
+            <feature name="Checkout">
+                <param name="ios-package" value="Checkout" />
+            </feature>
+        </config-file>
+        <source-file src="src/ios/Checkout.swift" />
+        <dependency id="cordova-plugin-add-swift-support" version="2.0.2"/>
+    </platform>
+</plugin>

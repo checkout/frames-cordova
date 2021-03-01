@@ -23,35 +23,10 @@ import org.json.JSONObject;
 public class Checkout extends CordovaPlugin {
 
     private Context mContext;
+
+    private String mPublicKey;
+    private Environment environment;
     private Gson mGson;
-
-    private CheckoutAPIClient mCheckoutAPIClient;
-    private CallbackContext mCallbackContext;
-
-    private final CheckoutAPIClient.OnTokenGenerated mTokenListener = new CheckoutAPIClient.OnTokenGenerated() {
-        @Override
-        public void onTokenGenerated(CardTokenisationResponse response) {
-            try {
-                mCallbackContext.success(new JSONObject(mGson.toJson(response)));
-            } catch (JSONException e) {
-                mCallbackContext.error(e.getLocalizedMessage());
-            }
-        }
-
-        @Override
-        public void onError(CardTokenisationFail error) {
-            try {
-                mCallbackContext.error(new JSONObject(mGson.toJson(error)));
-            } catch (JSONException e) {
-                mCallbackContext.error(e.getLocalizedMessage());
-            }
-        }
-
-        @Override
-        public void onNetworkError(VolleyError error) {
-            mCallbackContext.error(error.getLocalizedMessage());
-        }
-    };
 
     @Override
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
@@ -62,22 +37,26 @@ public class Checkout extends CordovaPlugin {
 
     @Override
     public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("initLiveClient")) {
-            setupClient(args.getString(0), Environment.LIVE, callbackContext);
-        } else if (action.equals("initSandboxClient")) {
-            setupClient(args.getString(0), Environment.SANDBOX, callbackContext);
-        }  else if (action.equals("generateToken")) {
-            generateToken(args.getJSONObject(0), callbackContext);
-        } else {
-            return false;
+        switch (action) {
+            case "initLiveClient":
+                setupClient(args.getString(0), Environment.LIVE, callbackContext);
+                break;
+            case "initSandboxClient":
+                setupClient(args.getString(0), Environment.SANDBOX, callbackContext);
+                break;
+            case "generateToken":
+                generateToken(args.getJSONObject(0), callbackContext);
+                break;
+            default:
+                return false;
         }
         return true;
     }
 
     private void setupClient(String pubKey, Environment environment, CallbackContext callbackContext) {
         try {
-            mCheckoutAPIClient = new CheckoutAPIClient(mContext, pubKey, environment);
-            mCheckoutAPIClient.setTokenListener(mTokenListener);
+            this.mPublicKey = pubKey;
+            this.environment = environment;
             callbackContext.success();
         } catch (Exception e) {
             callbackContext.error(e.getLocalizedMessage());
@@ -87,10 +66,45 @@ public class Checkout extends CordovaPlugin {
     private void generateToken(JSONObject jsonObject, CallbackContext callbackContext) {
         try {
             CardTokenisationRequest dto = mGson.fromJson(jsonObject.toString(), CardTokenisationRequest.class);
-            mCheckoutAPIClient.generateToken(dto);
-            mCallbackContext = callbackContext;
+            CheckoutAPIClient ckoClient = new CheckoutAPIClient(mContext, this.mPublicKey, this.environment);
+            ckoClient.setTokenListener(new PluginTokenListener(callbackContext));
+            ckoClient.generateToken(dto);
         } catch (Exception e) {
             callbackContext.error(e.getLocalizedMessage());
         }
+    }
+}
+
+class PluginTokenListener implements CheckoutAPIClient.OnTokenGenerated {
+
+    private final CallbackContext mCallbackContext;
+    private final Gson mGson;
+
+    public PluginTokenListener(CallbackContext callbackContext) {
+        this.mCallbackContext = callbackContext;
+        mGson = new Gson();
+    }
+
+    @Override
+    public void onTokenGenerated(CardTokenisationResponse response) {
+        try {
+            mCallbackContext.success(new JSONObject(mGson.toJson(response)));
+        } catch (JSONException e) {
+            mCallbackContext.error(e.getLocalizedMessage());
+        }
+    }
+
+    @Override
+    public void onError(CardTokenisationFail error) {
+        try {
+            mCallbackContext.error(new JSONObject(mGson.toJson(error)));
+        } catch (JSONException e) {
+            mCallbackContext.error(e.getLocalizedMessage());
+        }
+    }
+
+    @Override
+    public void onNetworkError(VolleyError error) {
+        mCallbackContext.error(error.getLocalizedMessage());
     }
 }

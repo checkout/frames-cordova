@@ -1,0 +1,8 @@
+{
+    "name": "cordova-plugin-checkout-tests",
+    "version": "0.0.1",
+    "description": "Checkout.com cordova plugin tests",
+    "author": "Abdelrahman Iaaly",
+    "license": "MIT"
+}
+  

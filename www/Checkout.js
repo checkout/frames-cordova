@@ -11,6 +11,7 @@ module.exports = {
     },
 
     generateToken: function (cardTokenisationRequest, success, error) {
+        cardTokenisationRequest.type = "card";
         exec(success, error, 'Checkout', 'generateToken', [cardTokenisationRequest]);
     }
 };

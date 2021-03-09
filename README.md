@@ -243,3 +243,21 @@ Object returned after successful tokenization
 | number | <code>string</code> | The phone number |
 
 <br>
+
+
+## Unit Testing
+
+You can test this plugin with [cordova-plugin-test-framework](https://github.com/apache/cordova-plugin-test-framework)
+
+Install the tests plugin:
+#### From NPM (not yet published)
+```shell
+cordova plugin add cordova-plugin-checkout/tests
+```
+
+#### From Git
+```shell
+cordova plugin add /path/to/cloned/repo/tests
+```
+
+<br>

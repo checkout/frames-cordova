@@ -1,7 +1,7 @@
 {
   "name": "cordova-plugin-checkout",
-  "version": "0.0.1",
-  "description": "Checkout.com cordova plugin",
+  "version": "1.0.0",
+  "description": "Checkout.com Frames cordova plugin",
   "cordova": {
     "id": "cordova-plugin-checkout",
     "platforms": [

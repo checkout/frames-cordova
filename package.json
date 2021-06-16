@@ -1,5 +1,5 @@
 {
-  "name": "cordova-plugin-checkout",
+  "name": "@checkout.com/frames-cordova",
   "version": "1.0.0",
   "description": "Checkout.com Frames cordova plugin",
   "cordova": {

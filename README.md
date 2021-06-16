@@ -3,7 +3,7 @@ A Cordova plugin to use Checkout Frames for Android & iOS.
 
 ## Installation
 ```shell
-cordova plugin add cordova-plugin-checkout
+cordova plugin add @checkout.com/frames-cordova
 ```
 
 ## Example Usage

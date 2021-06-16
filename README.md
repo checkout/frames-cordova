@@ -2,17 +2,9 @@
 A Cordova plugin to use Checkout Frames for Android & iOS.
 
 ## Installation
-#### From NPM (not yet published)
 ```shell
 cordova plugin add cordova-plugin-checkout
 ```
-
-#### From Git
-Clone this repo and run:
-```shell
-cordova plugin add /path/to/cloned/repo
-```
-
 
 ## Example Usage
 

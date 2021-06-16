@@ -1,7 +1,7 @@
 {
-  "name": "@checkout.com/frames-cordova",
+  "name": "@checkout.com/cordova-plugin-checkout",
   "version": "1.0.0",
-  "description": "Checkout.com Frames cordova plugin",
+  "description": "Checkout.com Frames cordova plugin - Start accepting online card payments in just a few minutes.",
   "cordova": {
     "id": "cordova-plugin-checkout",
     "platforms": [

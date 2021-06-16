@@ -1,9 +1,9 @@
 # Cordova Checkout Plugin
-A Cordova plugin to use Checkout Frames for Android & iOS.
+A Cordova plugin for Checkout.com Frames SDK - Start accepting online card payments in just a few minutes. Supports Android & iOS.
 
 ## Installation
 ```shell
-cordova plugin add @checkout.com/frames-cordova
+cordova plugin add @checkout.com/cordova-plugin-checkout
 ```
 
 ## Example Usage
@@ -243,7 +243,7 @@ You can test this plugin with [cordova-plugin-test-framework](https://github.com
 
 Install the tests plugin:
 ```shell
-cordova plugin add @checkout.com/frames-cordova/tests
+cordova plugin add @checkout.com/cordova-plugin-checkout/tests
 ```
 
 <br>

@@ -36,8 +36,8 @@ Now you can start tokenizing credit/debit cards.
 ```javascript
 var ckoCardTokenRequest = {
     number: "4543474002249996",
-    expiry_month: 6,
-    expiry_year: 2025,
+    expiry_month: "6",
+    expiry_year: "2025",
     name: "Bruce Wayne",
     cvv: "956",
     billing_address: {
@@ -71,8 +71,8 @@ Example of TokenResponse:
     type: "card",
     token: "tok_ubfj2q76miwundwlk72vxt2i7q",
     expires_on: "2019-08-24T14:15:22Z",
-    expiry_month: 6,
-    expiry_year: 2025,
+    expiry_month: "6",
+    expiry_year: "2025",
     scheme: "VISA",
     last4: "9996",
     bin: "454347",
@@ -191,8 +191,8 @@ Object returned after successful tokenization
 | type | <code>string</code> | The token type, in this case "card" |
 | token | <code>string</code> | The token value |
 | expires_on | <code>string</code> | The expiration datetime of the token |
-| expiry_month | <code>number</code> | The expiry month of the card |
-| expiry_year | <code>number</code> | The expiry year of the card |
+| expiry_month | <code>string</code> | The expiry month of the card |
+| expiry_year | <code>string</code> | The expiry year of the card |
 | name | <code>string</code> | The cardholder's name |
 | scheme | <code>string</code> | The card scheme |
 | last4 | <code>string</code> | The last 4 digit of the card number |

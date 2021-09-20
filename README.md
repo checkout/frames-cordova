@@ -36,8 +36,8 @@ Now you can start tokenizing credit/debit cards.
 ```javascript
 var ckoCardTokenRequest = {
     number: "4543474002249996",
-    expiry_month: 6,
-    expiry_year: 2025,
+    expiry_month: "06",
+    expiry_year: "25",
     name: "Bruce Wayne",
     cvv: "956",
     billing_address: {

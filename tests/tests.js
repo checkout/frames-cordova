@@ -50,8 +50,8 @@ exports.defineAutoTests = function () {
                     {
                         number: "4543474002249996",
                         cvv: "010",
-                        expiry_month: "08",
-                        expiry_year: "2025",
+                        expiryMonth: "08",
+                        expiryYear: "2025",
                         billing_address: {
                             country: "FR"
                         }
